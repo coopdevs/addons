@@ -6,54 +6,56 @@ from odoo import api, fields, models
 
 
 class Document(models.Model):
-    _name = 'document_hosting.document'
+    _name = "document_hosting.document"
     _description = "Document"
-    _order = 'document_date desc, name'
-    _inherit = 'mail.thread'
+    _order = "document_date desc, name"
+    _inherit = "mail.thread"
 
     name = fields.Char("Name", required=True)
     description = fields.Text("Description")
-    document = fields.Binary('Document', attachment=True, required=True)
+    document = fields.Binary("Document", attachment=True, required=True)
     filename = fields.Char("Document File Name")
-    mimetype = fields.Char("Mime-Type", compute='_mimetype')
-    file_size = fields.Integer("File Size", compute='_file_size')
-    document_date = fields.Date("Document Date",
-                                default=fields.Date.today())
-    category = fields.Many2one('document_hosting.category',
-                               string="Category")
+    mimetype = fields.Char("Mime-Type", compute="_mimetype")
+    file_size = fields.Integer("File Size", compute="_file_size")
+    document_date = fields.Date("Document Date", default=fields.Date.today())
+    category = fields.Many2one("document_hosting.category", string="Category")
     published = fields.Boolean("Published?")
-    publication_date = fields.Datetime("Publication Date",
-                                       compute='_publication_date',
-                                       store=True)
+    publication_date = fields.Datetime(
+        "Publication Date", compute="_publication_date", store=True
+    )
     public = fields.Boolean("Public?")
 
-    @api.depends('document')
+    @api.depends("document")
     def _mimetype(self):
         for doc in self:
-            attachment_mgr = self.env['ir.attachment'].sudo()
+            attachment_mgr = self.env["ir.attachment"].sudo()
             attachment = attachment_mgr.search_read(
-                [('res_model', '=', self._name),
-                 ('res_id', '=', doc.id),
-                 ('res_field', '=', 'document')],
-                fields=['mimetype', 'file_size'],
+                [
+                    ("res_model", "=", self._name),
+                    ("res_id", "=", doc.id),
+                    ("res_field", "=", "document"),
+                ],
+                fields=["mimetype", "file_size"],
                 limit=1,
             )[0]
-            doc.mimetype = attachment['mimetype']
+            doc.mimetype = attachment["mimetype"]
 
-    @api.depends('document')
+    @api.depends("document")
     def _file_size(self):
         for doc in self:
-            attachment_mgr = self.env['ir.attachment'].sudo()
+            attachment_mgr = self.env["ir.attachment"].sudo()
             attachment = attachment_mgr.search_read(
-                [('res_model', '=', self._name),
-                 ('res_id', '=', doc.id),
-                 ('res_field', '=', 'document')],
-                fields=['mimetype', 'file_size'],
+                [
+                    ("res_model", "=", self._name),
+                    ("res_id", "=", doc.id),
+                    ("res_field", "=", "document"),
+                ],
+                fields=["mimetype", "file_size"],
                 limit=1,
             )[0]
-            doc.file_size = attachment['file_size']
+            doc.file_size = attachment["file_size"]
 
-    @api.depends('published')
+    @api.depends("published")
     def _publication_date(self):
         for doc in self:
             if doc.published and not doc.publication_date:
@@ -63,17 +65,18 @@ class Document(models.Model):
 
 
 class Category(models.Model):
-    _name = 'document_hosting.category'
+    _name = "document_hosting.category"
     _description = "Category"
-    _order = 'name'
+    _order = "name"
 
     name = fields.Char("Name", required=True)
     description = fields.Text("Description")
-    parent_id = fields.Many2one('document_hosting.category',
-                                string="Parent Category")
-    child_ids = fields.One2many('document_hosting.category',
-                                'parent_id',
-                                string="Child Categories")
-    document_ids = fields.One2many('document_hosting.document',
-                                   'category',
-                                   string="Documents")
+    parent_id = fields.Many2one(
+        "document_hosting.category", string="Parent Category"
+    )
+    child_ids = fields.One2many(
+        "document_hosting.category", "parent_id", string="Child Categories"
+    )
+    document_ids = fields.One2many(
+        "document_hosting.document", "category", string="Documents"
+    )

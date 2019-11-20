@@ -14,7 +14,7 @@
     "license": "AGPL-3",
     "version": "12.0.1.0.0",
     "website": "https://github.com/coopiteasy/addons",
-    "category": "Cooperative Management",
+    "category": "Document",
     "depends": ["base", "web", "mail",],
     "data": [
         "security/ir.model.access.csv",

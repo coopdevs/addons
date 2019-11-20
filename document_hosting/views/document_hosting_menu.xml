@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright 2018 Rémy Taymans <remytaymans@gmail.com>
+     Copyright 2018 - Today Coop IT Easy SCRLfs (<http://www.coopiteasy.be>)
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-  <data>
 
     <!-- Action to open document list -->
     <act_window id="action_document_hosting"
@@ -35,5 +34,4 @@
       parent="menu_main_document_hosting"
       action="action_document_hosting_category" />
 
-  </data>
 </odoo>

@@ -1,32 +1,24 @@
-
-# Copyright 2018 Rémy Taymans <remytaymans@gmail.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2018 - Today Coop IT Easy SCRLfs (<http://www.coopiteasy.be>)
+# - Rémy Taymans <remy@coopiteasy.be>
+# - Elouan Le bars <elouan@coopiteasy.be>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Document Hosting',
-
-    'summary': """
-    Manage the documents of your cooperative.
+    "name": "Document Hosting",
+    "summary": """
+    Manage documents that can be published on website with `document_hosting_website`.
     """,
-    'description': """
+    "description": """
     """,
-
-    'author': 'Rémy Taymans',
-    'license': 'AGPL-3',
-    'version': '12.0.1.0.0',
-    'website': "https://github.com/coopiteasy/addons",
-
-    'category': 'Cooperative Management',
-
-    'depends': [
-        'base',
-        'web',
-        'mail',
+    "author": "Coop IT Easy SCRLfs",
+    "license": "AGPL-3",
+    "version": "12.0.1.0.0",
+    "website": "https://github.com/coopiteasy/addons",
+    "category": "Cooperative Management",
+    "depends": ["base", "web", "mail",],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/document_hosting_menu.xml",
+        "views/document_hosting_views.xml",
     ],
-
-    'data': [
-        'security/ir.model.access.csv',
-        'views/document_hosting_menu.xml',
-        'views/document_hosting_views.xml',
-    ]
 }

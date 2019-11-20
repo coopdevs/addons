@@ -6,7 +6,7 @@
 {
     "name": "Document Hosting",
     "summary": """
-    Manage documents that can be published on website with `document_hosting_website`.
+    Manage documents that can be published on website with document_hosting_website.
     """,
     "description": """
     """,

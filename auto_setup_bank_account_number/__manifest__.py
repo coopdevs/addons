@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Auto setup bank on Res Partner Bank creation",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "depends": ["base", "base_bank_from_iban"],
     "author": "Coopdevs Treball SCCL",
     "category": "Accounting & Finance",

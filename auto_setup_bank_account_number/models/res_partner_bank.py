@@ -12,3 +12,9 @@ class ResPartnerBank(models.Model):
             new_res_partner_bank._onchange_acc_number_base_bank_from_iban()
 
         return new_res_partner_bank
+
+    @api.multi
+    def force_onchange_acc_number_base_bank_from_iban(self):
+        for acc in self:
+            acc._onchange_acc_number_base_bank_from_iban()
+        return True
